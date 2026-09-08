@@ -181,10 +181,10 @@ UCI White Wine CSV
 
 ```math
 p(x_0,\ldots,x_{D-1})
-= \prod_{i=0}^{D-1} p(x_i \mid x_0,\ldots,x_{i-1})
+= p(x_0)\prod_{i=1}^{D-1}p(x_i \mid x_0,\ldots,x_{i-1})
 ```
 
-每个条件概率只依赖当前位置之前的变量，即第 0 个变量到第 $i-1$ 个变量。
+除第一个变量外，每个条件概率只依赖当前位置之前的变量，即第 0 个变量到第 $i-1$ 个变量。
 
 ### 二值 NADE
 
@@ -259,22 +259,20 @@ nade/
 │   └── continuous.yaml
 ├── data/
 │   └── README.md             # 数据下载说明
+├── models/                   # 三种 NADE 模型
+│   ├── __init__.py
+│   ├── bernoulli.py
+│   ├── categorical.py
+│   └── continuous.py
 ├── src/
-│   ├── models/               # 三种 NADE 模型
-│   │   ├── bernoulli.py
-│   │   ├── categorical.py
-│   │   └── continuous.py
-│   ├── cli.py                # 命令行参数与流程调度
-│   ├── config.py             # 配置文件解析
-│   ├── utils.py              # 随机种子与运行工具
-│   ├── data.py               # 图像数据下载与加载
-│   ├── preprocessing.py      # 二值和类别数据转换
+│   ├── __init__.py
+│   ├── config.py             # 配置解析与随机种子
+│   ├── data.py               # 图像数据处理与加载
 │   ├── tabular.py            # 连续表格数据处理
 │   ├── training.py           # 训练、评估与样本生成
 │   ├── reporting.py          # 连续样本与统计结果导出
 │   ├── visualization.py      # 图像对比结果生成
-│   ├── __init__.py
-│   └── __main__.py
+│   └── cli.py                # 命令行参数与流程调度
 ├── main.py                   # 项目入口
 ├── requirements.txt
 ├── README.md

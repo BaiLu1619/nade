@@ -13,10 +13,35 @@ import torch
 from torch.utils.data import DataLoader, Subset, random_split
 from torchvision import datasets, transforms
 
-from src.preprocessing import BinarizationMode, Binarize, ToCategorical
-
 DatasetName = Literal["mnist", "fashion_mnist", "white_wine"]
 Representation = Literal["binary", "categorical", "continuous"]
+BinarizationMode = Literal["fixed", "stochastic"]
+
+
+class Binarize:
+    """Convert a [0, 1] image tensor to a binary tensor."""
+
+    def __init__(self, mode: BinarizationMode = "fixed", threshold: float = 0.5):
+        if mode not in {"fixed", "stochastic"}:
+            raise ValueError("mode must be 'fixed' or 'stochastic'")
+        if not 0.0 <= threshold <= 1.0:
+            raise ValueError("threshold must be in [0, 1]")
+        self.mode = mode
+        self.threshold = threshold
+
+    def __call__(self, image: torch.Tensor) -> torch.Tensor:
+        if self.mode == "fixed":
+            return (image >= self.threshold).to(torch.float32)
+        return torch.bernoulli(image).to(torch.float32)
+
+
+class ToCategorical:
+    """Preserve an 8-bit grayscale tensor as integer categories 0, ..., 255."""
+
+    def __call__(self, image: torch.Tensor) -> torch.Tensor:
+        if image.dtype != torch.uint8:
+            raise TypeError("categorical grayscale input must use torch.uint8")
+        return image.to(torch.long)
 
 
 class _FlatFolders:

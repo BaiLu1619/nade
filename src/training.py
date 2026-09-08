@@ -8,11 +8,11 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader
 
+from models import CategoricalNADE, NADE, RNADE, bits_per_dimension
+from src.config import seed_everything
 from src.data import DATASET_TITLES, ImageLoaders, get_image_loaders
-from src.models import CategoricalNADE, NADE, RNADE, bits_per_dimension
 from src.reporting import collect_vectors, save_samples_csv, save_statistics_csv
 from src.tabular import TabularLoaders, get_white_wine_loaders
-from src.utils import seed_everything
 from src.visualization import collect_images, save_comparison_grid
 
 
