@@ -18,7 +18,7 @@ NADE 是一个基于 PyTorch 的自回归生成模型项目，采用神经自回
 - 基于 Bernoulli 分布和 sigmoid 实现 Bernoulli NADE
 - 基于 Categorical 分布和 Softmax 实现 Categorical NADE
 - 基于 Gaussian Mixture 和 Softplus 实现连续型 RNADE
-- 使用负对数似然（NLL）和 bits per dimension 评价概率建模效果
+- 使用负对数似然（NLL）和 bits per dimension（bits/dim） 评价概率建模效果
 - 图像模型会生成真实图像与模型样本的左右对比图
 - RNADE 输出连续生成样本和逐特征统计结果
 - 固定数据划分和随机种子，便于重复实验
