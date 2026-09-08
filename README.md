@@ -253,28 +253,33 @@ h_i = \sigma\left(c + \sum_{j=0}^{i-1}W_jx_j\right)
 
 ```text
 nade/
-├── configs/
+├── configs/                  # 模型与训练配置
 │   ├── bernoulli.yaml
 │   ├── categorical.yaml
 │   └── continuous.yaml
 ├── data/
-│   └── README.md
-├── nade/
-│   ├── models/
+│   └── README.md             # 数据下载说明
+├── src/
+│   ├── models/               # 三种 NADE 模型
 │   │   ├── bernoulli.py
 │   │   ├── categorical.py
 │   │   └── continuous.py
-│   ├── cli.py
-│   ├── config.py
-│   ├── data.py
-│   ├── preprocessing.py
-│   ├── reporting.py
-│   ├── tabular.py
-│   ├── training.py
-│   └── visualization.py
-├── main.py
+│   ├── cli.py                # 命令行参数与流程调度
+│   ├── config.py             # 配置文件解析
+│   ├── utils.py              # 随机种子与运行工具
+│   ├── data.py               # 图像数据下载与加载
+│   ├── preprocessing.py      # 二值和类别数据转换
+│   ├── tabular.py            # 连续表格数据处理
+│   ├── training.py           # 训练、评估与样本生成
+│   ├── reporting.py          # 连续样本与统计结果导出
+│   ├── visualization.py      # 图像对比结果生成
+│   ├── __init__.py
+│   └── __main__.py
+├── main.py                   # 项目入口
 ├── requirements.txt
-└── README.md
+├── README.md
+├── LICENSE
+└── .gitignore
 ```
 
 ## 输出结果
@@ -291,7 +296,7 @@ NLL 和 bits/dim 均为越低越好。连续密度与离散概率的度量定义
 
 ### 图像模型
 
-Bernoulli NADE 和 Categorical NADE 会在项目根目录生成 `comparison.png`：
+Bernoulli NADE 和 Categorical NADE 会生成 `outputs/comparison.png`：
 
 - 左侧 `Real`：测试集中的真实图像
 - 右侧模型名称：NADE 生成的样本

@@ -1,13 +1,9 @@
-"""Configuration loading and reproducibility utilities."""
+"""Configuration loading utilities."""
 
 from __future__ import annotations
 
-import random
 from pathlib import Path
 from typing import Any
-
-import numpy as np
-import torch
 
 
 def load_config(path: str | Path) -> dict[str, Any]:
@@ -37,11 +33,3 @@ def load_config(path: str | Path) -> dict[str, Any]:
     if not config:
         raise ValueError("configuration is empty")
     return config
-
-
-def seed_everything(seed: int) -> None:
-    """Seed all random number generators used by the project."""
-    random.seed(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-    torch.use_deterministic_algorithms(True, warn_only=True)

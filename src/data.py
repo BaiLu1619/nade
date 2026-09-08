@@ -13,7 +13,7 @@ import torch
 from torch.utils.data import DataLoader, Subset, random_split
 from torchvision import datasets, transforms
 
-from nade.preprocessing import BinarizationMode, Binarize, ToCategorical
+from src.preprocessing import BinarizationMode, Binarize, ToCategorical
 
 DatasetName = Literal["mnist", "fashion_mnist", "white_wine"]
 Representation = Literal["binary", "categorical", "continuous"]
@@ -119,7 +119,7 @@ def download_dataset(
 ) -> None:
     """Download and validate a supported dataset."""
     if dataset_name == "white_wine":
-        from nade.tabular import download_white_wine
+        from src.tabular import download_white_wine
 
         destination = download_white_wine(data_dir)
         print(f"UCI White Wine Quality is ready: {destination.resolve()}")

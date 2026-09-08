@@ -1,4 +1,4 @@
-"""Run the NADE command-line interface."""
+"""Allow the project to run with ``python -m src``."""
 
 from src.cli import main
 

@@ -1,0 +1,16 @@
+"""Shared runtime utilities."""
+
+from __future__ import annotations
+
+import random
+
+import numpy as np
+import torch
+
+
+def seed_everything(seed: int) -> None:
+    """Seed all random number generators used by the project."""
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.use_deterministic_algorithms(True, warn_only=True)

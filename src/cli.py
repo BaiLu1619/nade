@@ -5,9 +5,9 @@ from __future__ import annotations
 import argparse
 from collections.abc import Sequence
 
-from nade.config import load_config
-from nade.data import download_dataset
-from nade.training import run_pipeline
+from src.config import load_config
+from src.data import download_dataset
+from src.training import run_pipeline
 
 
 def build_parser() -> argparse.ArgumentParser:
